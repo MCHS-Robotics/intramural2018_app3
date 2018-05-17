@@ -1,0 +1,5 @@
+include ':FtcRobotController'
+include ':TeamMOCT'
+include ':TeamRFF'
+include ':TeamNA'
+include ':TeamIrrelevant'
