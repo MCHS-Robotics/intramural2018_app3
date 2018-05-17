@@ -119,10 +119,10 @@ public class RFFTeleOp extends OpMode
 
         // POV Mode uses left stick to go forward, and right stick to turn.
         // - This uses basic math to combine motions and is easier to drive straight.
-        double drive = gamepad1.right_stick_y;
-        double turn  =  -gamepad1.left_stick_x;
+        double turn = gamepad1.left_stick_x;
+        double drive  =  gamepad1.right_stick_y;
         left.setPower(Range.clip(drive + turn, -1.0, 1.0));
-        right.setPower(Range.clip(-drive + turn, -1.0, 1.0));
+        right.setPower(Range.clip(drive - turn, -1.0, 1.0));
         telemetry.addData("Right", right.getCurrentPosition());
         telemetry.addData("Left", left.getCurrentPosition());
         telemetry.addLine();
