@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -75,7 +76,6 @@ public class NoahAutoV1 extends LinearOpMode {
     private DcMotor lift = null;
     private CRServo wrist = null;
     private Servo claw = null;
-
     @Override
     public void runOpMode() {
 
@@ -95,6 +95,7 @@ public class NoahAutoV1 extends LinearOpMode {
 
         left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         right.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        right.setDirection(DcMotorSimple.Direction.REVERSE);
 
         left.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         right.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -119,8 +120,22 @@ public class NoahAutoV1 extends LinearOpMode {
             left.setTargetPosition(pos);
             right.setTargetPosition(pos);
             right.setPower(0.2);
-            left.setPower(-0.2);
+            left.setPower(0.2);
+        telemetry.addData("LBusy", left.isBusy());
+        telemetry.addData("RBusy", right.isBusy());
+        telemetry.addData("target", pos);
+        telemetry.update();
+
         while(left.isBusy() && right.isBusy());
+        {
+            telemetry.addData("Motor Encoder", "Left Pos: " + left.getCurrentPosition());
+            telemetry.addData("Motor Encoder", "Right Pos: " + right.getCurrentPosition());
+            telemetry.addData("Power","Left Pow: " + left.getPower());
+            telemetry.addData("Power","Right Pow: " + right.getPower());
+            telemetry.addData("Target","Left Tar: " + left.getTargetPosition());
+            telemetry.addData("Target", "Right Tar: " + right.getTargetPosition());
+            telemetry.update();
+        }
         left.setPower(0);
         right.setPower(0);
         left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

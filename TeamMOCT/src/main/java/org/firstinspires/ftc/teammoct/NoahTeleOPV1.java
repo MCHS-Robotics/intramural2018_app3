@@ -116,8 +116,6 @@ public class NoahTeleOPV1 extends OpMode
         // Setup a variable for each drive wheel to save power level for telemetry
         double leftPower;
         double rightPower;
-        double liftPower;
-        double wristPower;
         // Choose to drive using either Tank Mode, or POV Mode
         // Comment out the method that's not used.  The default below is POV.
 
@@ -125,12 +123,8 @@ public class NoahTeleOPV1 extends OpMode
         // - This uses basic math to combine motions and is easier to drive straight.
         double drive = -gamepad1.left_stick_y;
         double turn  = gamepad1.right_stick_x;
-        double liftValue = gamepad2.left_stick_y;
-        double wristValue = gamepad2.right_stick_y;
         leftPower    = Range.clip(drive - turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive + turn, -1.0, 1.0) ;
-        liftPower = Range.clip(liftValue, -1.0, 1.0);
-        wristPower = Range.clip(wristValue, -1.0,1.0);
         // Tank Mode uses one stick to control each wheel.
         // - This requires no math, but it is hard to drive forward slowly and keep straight.
         // leftPower  = -gamepad1.left_stick_y ;
@@ -139,14 +133,27 @@ public class NoahTeleOPV1 extends OpMode
         // Send calculated power to wheels
         left.setPower(leftPower);
         right.setPower(rightPower);
-        lift.setPower(liftPower/2);
-        wrist.setPower(wristPower);
-
-        if(gamepad2.x)
+        if(gamepad1.dpad_up)
+        {
+            lift.setPower(0.5);
+        }
+        else if(gamepad1.dpad_down);
+        {
+            lift.setPower(-0.5);
+        }
+        if(gamepad1.left_bumper)
+        {
+            wrist.setPower(-1.0);
+        }
+        else if(gamepad1.right_bumper)
+        {
+            wrist.setPower(1.0);
+        }
+        if(gamepad1.x)
         {
             claw.setPosition(1.0);
         }
-        else if(gamepad2.b)
+        else if(gamepad1.b)
         {
             claw.setPosition(0.5);
         }
