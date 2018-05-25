@@ -135,12 +135,17 @@ public class NoahTeleOPV1 extends OpMode
         right.setPower(rightPower);
         if(gamepad1.dpad_up)
         {
-            lift.setPower(0.5);
-        }
-        else if(gamepad1.dpad_down);
-        {
             lift.setPower(-0.5);
         }
+        else if(gamepad1.dpad_down)
+        {
+            lift.setPower(0.5);
+        }
+        else
+        {
+            lift.setPower(0);
+        }
+
         if(gamepad1.left_bumper)
         {
             wrist.setPower(-1.0);
@@ -148,6 +153,10 @@ public class NoahTeleOPV1 extends OpMode
         else if(gamepad1.right_bumper)
         {
             wrist.setPower(1.0);
+        }
+        else
+        {
+            wrist.setPower(0);
         }
         if(gamepad1.x)
         {
@@ -160,6 +169,8 @@ public class NoahTeleOPV1 extends OpMode
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        telemetry.addData("Lift", "Left Power: ", lift.getPower());
+        telemetry.update();
 
     }
 
