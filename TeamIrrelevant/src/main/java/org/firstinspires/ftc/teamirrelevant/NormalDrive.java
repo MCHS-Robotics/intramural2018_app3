@@ -28,7 +28,7 @@ public class NormalDrive implements MoveableRobot {
         turnPower = 1;
         movePower = 1;
 
-        Dr = 19;
+        Dr = 20.5;
         Cr = Math.PI * Dr;
         Dw = 4;
         Cw = Math.PI * Dw;

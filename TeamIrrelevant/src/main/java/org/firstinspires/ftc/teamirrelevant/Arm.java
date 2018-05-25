@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 /**
  * Created by student on 3/21/18.
  */
@@ -129,6 +131,15 @@ public class Arm {
     public void moveWristDown(float amt){
         if(wrist.getPosition() <= wristExt[0])
             wrist.setPosition(wrist.getPosition()-amt);
+    }
+
+    /**
+     * Gives telem data on the arm of the robot
+     */
+    public void getTelemData(Telemetry t){
+        t.addData("WristPosition",wrist.getPosition());
+        t.addData("ClawPosition",wrist.getPosition());
+        t.update();
     }
 }
 
