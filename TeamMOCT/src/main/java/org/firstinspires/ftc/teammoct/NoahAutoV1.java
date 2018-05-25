@@ -100,7 +100,7 @@ public class NoahAutoV1 extends LinearOpMode {
         left.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         right.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         waitForStart();
-        driveForward(72);
+        driveForward(80);
     }
 
     /*
