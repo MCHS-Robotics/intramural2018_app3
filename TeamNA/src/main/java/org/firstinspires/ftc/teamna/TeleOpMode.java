@@ -43,7 +43,7 @@ public class TeleOpMode extends LinearOpMode {
             left2   .setPower   (-gamepad1.left_stick_y);
             right2  .setPower   (-gamepad1.right_stick_y);
             //arm    .setPower   (-gamepad2.right_stick_y);
-            endgame.setPower   (gamepad1.a ? 0.5 : -0.5);
+            endgame.setPower   (gamepad1.a ? 0.5 : gamepad1.b ? -0.5 : 0 );
             //auto   .setPosition( gamepad2. a ? 1  :  0 );
             //claw   .setPosition( gamepad2. b ? 1  :  0 );
         }

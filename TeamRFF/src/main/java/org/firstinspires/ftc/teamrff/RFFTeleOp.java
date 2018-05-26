@@ -130,19 +130,19 @@ public class RFFTeleOp extends OpMode
         telemetry.addLine();
         telemetry.addData("Left", "LeftPower: " + left.getPower());
         telemetry.update();
-        if (gamepad1.dpad_up)
+        if (gamepad1.b)
         {
             //bucket.setPosition(0);
         }
-        else if (gamepad1.dpad_down)
+        else if (gamepad1.a)
         {
             //bucket.setPosition(0.65);
         }
-        if(gamepad2.dpad_up)
+        if(gamepad1.dpad_up)
         {
             //arm.setPower(-0.5);
         }
-        else if(gamepad2.dpad_down)
+        else if(gamepad1.dpad_down)
         {
             //arm.setPower(0.5);
         }
